@@ -168,6 +168,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# opcional: si tienes una carpeta "static" en el proyecto
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 DATABASES = {
     "default": dj_database_url.config(
         default=os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"),
