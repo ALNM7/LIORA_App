@@ -29,8 +29,16 @@ SECRET_KEY = os.getenv("SECRET_KEY", "-_&+lsebec(whhw!%n@ww&1j=4-^j_if9x8$q778+9
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',  "api.liora-luxury.com",      
-    "liora-app.onrender.com",]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "liora-app.onrender.com",
+    "api.liora-luxury.com",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://liora-app.onrender.com",
+    "https://api.liora-luxury.com",
+]
 
 #ESTO SOLO SE USA EN DESARROLLO LOCAL
 #ALLOWED_HOSTS = ['*',]
