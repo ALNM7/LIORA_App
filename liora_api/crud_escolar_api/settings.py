@@ -30,7 +30,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',  "api.liora-luxury.com",      
-    "liora-api.onrender.com",]
+    "liora-app.onrender.com",]
 
 #ESTO SOLO SE USA EN DESARROLLO LOCAL
 #ALLOWED_HOSTS = ['*',]
