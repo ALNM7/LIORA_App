@@ -1,0 +1,195 @@
+$ink: #111;
+$muted: #666;
+$border: #e5e5e5;
+$background: #ffffff;
+
+/* ---------- HERO ---------- */
+
+.w-hero {
+  padding: 40px 16px 30px;
+  text-align: center;
+  /* tono crema/amarillo tipo high-j */
+  background: #f8f1df;
+}
+
+.w-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.w-hero-title {
+  font-size: 18px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $ink;
+  margin: 0 0 10px;
+}
+
+.w-hero-subtitle {
+  margin: 0;
+  color: $muted;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ---------- GRID CENTRADA ---------- */
+
+.w-grid {
+  max-width: 1120px;
+  margin: 40px auto 72px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  justify-content: center; /* centra el conjunto */
+}
+
+/* estados de carga / error */
+.w-loading,
+.w-status {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 14px;
+  color: $muted;
+}
+
+.w-status.error {
+  color: #b00020;
+}
+
+/* ---------- CARD ---------- */
+
+.w-card {
+  border: 1px solid $border;
+  background: $background;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 16px;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #d8d0c3;
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.06);
+
+    .w-card-cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.w-card-media {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.w-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+/* flechas carrusel */
+
+.w-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.94);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: #fff;
+    border-color: $ink;
+  }
+}
+
+.w-arrow-left {
+  left: 8px;
+}
+
+.w-arrow-right {
+  right: 8px;
+}
+
+/* cuerpo de la card */
+
+.w-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.w-card-name {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $ink;
+  margin: 0 0 6px;
+}
+
+.w-card-materials {
+  font-size: 13px;
+  color: $muted;
+  margin: 0 0 6px;
+}
+
+.w-card-price {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+/* botón VIEW PIECE estilo high-j: aparece al hover */
+
+.w-card-cta {
+  margin-top: 10px;
+  border: none;
+  background: $ink;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  padding: 11px 0;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  opacity: 0;
+  transform: translateY(6px);
+
+  &:hover {
+    background: #000;
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1024px) {
+  .w-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .w-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 480px;
+  }
+
+  .w-hero {
+    padding: 32px 14px 24px;
+  }
+}

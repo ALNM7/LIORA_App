@@ -1,0 +1,90 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="account-wrapper">
+  <div class="account-inner">
+
+   
+    <div class="account-column login-column" *ngIf="!user">
+      <h2 class="section-title">Sign in</h2>
+
+      <form (ngSubmit)="onLogin()" class="account-form">
+        <div class="field">
+          <label>Username</label>
+          <input
+            type="text"
+            [(ngModel)]="username"
+            name="username"
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button type="submit" class="primary-btn">
+          Sign in
+        </button>
+
+        <p class="error" *ngIf="loginError">
+          {{ loginError }}
+        </p>
+      </form>
+    </div>
+
+    <!-- ========================================= -->
+    <!--      PERFIL (solo si SÍ está logueado)    -->
+    <!-- ========================================= -->
+    <div class="account-column profile-column" *ngIf="user">
+      <h2 class="section-title">My account</h2>
+
+      <p class="user-line">
+        <strong>{{ user.email }}</strong>
+      </p>
+
+      <p class="user-line" *ngIf="user.name">
+        Name: {{ user.name }}
+      </p>
+
+      <p class="user-line" *ngIf="user.is_admin">
+        Role: Liora administrator
+      </p>
+
+      <button class="secondary-btn" type="button" (click)="onLogout()">
+        Sign out
+      </button>
+
+      <!-- Botón admin solo si es admin -->
+      <button
+        class="primary-btn admin-btn"
+        type="button"
+        *ngIf="user.is_admin"
+        (click)="goToAdminHighJ()"
+      >
+        Manage high jewelry
+      </button>
+
+      <!-- MINI RESUMEN DEL CARRITO -->
+      <div class="cart-summary" *ngIf="cartCount > 0">
+        <h3>Cart summary</h3>
+        <p>
+          {{ cartCount }} item{{ cartCount > 1 ? 's' : '' }}
+          ·
+          {{ cartTotal | currency:'USD':'symbol':'1.0-0' }}
+        </p>
+        <button type="button" class="link-btn" (click)="openCart()">
+          Open cart
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<app-footer></app-footer>

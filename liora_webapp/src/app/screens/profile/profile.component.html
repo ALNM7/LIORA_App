@@ -1,0 +1,36 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="profile-wrapper">
+  <div *ngIf="loading" class="profile-loading">
+    Loading profile…
+  </div>
+
+  <div class="profile-card" *ngIf="!loading && user">
+    <h1 class="profile-title">My Profile</h1>
+
+    <p class="profile-field">
+      <span class="label">Name</span>
+      <span class="value">{{ user.name || '—' }}</span>
+    </p>
+
+    <p class="profile-field">
+      <span class="label">Email</span>
+      <span class="value">{{ user.email }}</span>
+    </p>
+
+    <!-- Solo se muestra si user.is_admin === true -->
+    <button
+      *ngIf="user.is_admin"
+      class="profile-admin-btn"
+      (click)="goToAdmin()"
+    >
+      ADD HIGH JEWELRY PIECE
+    </button>
+  </div>
+
+  <div *ngIf="!loading && error" class="profile-error">
+    {{ error }}
+  </div>
+</section>
+
+<app-footer></app-footer>

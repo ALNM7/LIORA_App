@@ -1,0 +1,59 @@
+<nav class="liora-nav">
+
+  <div class="top-row">
+    <div class="left-links">
+      <span class="link static">UNITED STATES</span>
+      <a class="link hover-underline" routerLink="/contact-us">CONTACT US</a>
+      
+    </div>
+
+    <div class="logo">
+      <a routerLink="/">
+        <img src="assets/liora_1.png" alt="Liora" class="logo-img" loading="eager"/>
+      </a>
+    </div>
+
+    <div class="right-icons">
+     
+      <button class="icon-btn" routerLink="/account" aria-label="Account">
+        <mat-icon>person</mat-icon>
+      </button>
+
+      
+      <button
+        class="icon-btn cart-btn"
+        type="button"
+        (click)="toggleCart()"
+        aria-label="Cart"
+      >
+        <mat-icon>shopping_bag</mat-icon>
+        <span class="cart-badge" *ngIf="getTotalCount() > 0">
+          {{ getTotalCount() }}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="cats">
+      <a class="cat" routerLink="/high-j">HIGH JEWELRY</a>
+      <!-- 
+      <a class="cat"  routerLink="/watches">WATCHES</a>
+      <a class="cat" href="#">BAGS AND ACCESSORIES</a>
+      <a class="cat" href="#">FRAGRANCES</a>
+      -->
+      
+    </div>
+
+    <div class="search-wrap">
+      <span class="divider" aria-hidden="true"></span>
+      <mat-icon class="search">search</mat-icon>
+    </div>
+  </div>
+</nav>
+
+
+<app-cart-panel
+  *ngIf="cartUi.open$ | async"
+  (close)="handleCartClose()"
+></app-cart-panel>

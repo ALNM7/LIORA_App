@@ -1,0 +1,51 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="manage-wrapper">
+  <div class="manage-header">
+    <h1>High Jewelry Admin</h1>
+    <button (click)="goToCreate()">New piece</button>
+  </div>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <p class="loading" *ngIf="loading">Loading pieces…</p>
+
+  <div class="table" *ngIf="!loading && !error">
+    <div class="table-head">
+      <span class="col-thumb"></span>
+      <span class="col-name">Piece</span>
+      <span class="col-cat">Category</span>
+      <span class="col-price">Price</span>
+      <span class="col-actions">Actions</span>
+    </div>
+
+    <div class="table-row" *ngFor="let item of items">
+      <div class="col-thumb">
+        <img [src]="getThumb(item)" [alt]="item.name" />
+      </div>
+      <div class="col-name">
+        <div class="name">{{ item.name }}</div>
+        <div class="materials">{{ item.materials }}</div>
+      </div>
+      <div class="col-cat">{{ item.category | uppercase }}</div>
+      <div class="col-price">
+        {{ item.price | currency:'USD':'symbol':'1.0-0' }}
+      </div>
+      <div class="col-actions">
+        <button class="icon" (click)="onEdit(item)" title="Edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          class="icon"
+          (click)="onDelete(item)"
+          [disabled]="deletingId === item.id"
+          title="Delete"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

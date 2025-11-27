@@ -1,0 +1,85 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="admin-hj-wrapper">
+  <h1 class="admin-title">Add High Jewelry Piece</h1>
+
+  <form class="admin-form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label>Name *</label>
+      <input [(ngModel)]="name" name="name" type="text" required />
+    </div>
+
+    <div class="field">
+      <label>Category *</label>
+      <select [(ngModel)]="category" name="category" required>
+        <option value="bracelet">Bracelet</option>
+        <option value="ring">Ring</option>
+        <option value="necklace">Necklace</option>
+        <option value="earrings">Earrings</option>
+        <option value="watches">Watches</option>
+        <option value="accessories">Accessories</option>
+        <option value="fragrances">Fragrances</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Materials *</label>
+      <textarea
+        [(ngModel)]="materials"
+        name="materials"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label>Price (USD) *</label>
+      <input
+        [(ngModel)]="price"
+        name="price"
+        type="number"
+        min="0"
+        required
+      />
+    </div>
+
+    <div class="field checkbox-field">
+      <label>
+        <input
+          type="checkbox"
+          [(ngModel)]="is_active"
+          name="is_active"
+        />
+        Active
+      </label>
+    </div>
+
+    <div class="field">
+      <label>Images (1 or more)</label>
+      <input
+        type="file"
+        (change)="onFilesSelected($event)"
+        multiple
+        accept="image/*"
+      />
+      <div class="file-hint" *ngIf="files.length > 0">
+        {{ files.length }} file(s) selected
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="saving || !authReady">
+  {{
+    saving
+      ? (isUpdate ? 'Updating…' : 'Saving…')
+      : (isUpdate ? 'Update Piece' : 'Create Piece')
+  }}
+</button>
+
+
+    <p class="message" *ngIf="message">
+      {{ message }}
+    </p>
+  </form>
+</section>
+
+<app-footer></app-footer>

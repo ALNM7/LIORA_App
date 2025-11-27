@@ -1,0 +1,116 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="co-wrapper" *ngIf="!placed; else thanksBlock">
+  <div class="co-layout">
+    <!-- Resumen del pedido -->
+    <div class="co-summary">
+      <h1 class="co-title">LIORA CHECKOUT</h1>
+      <p class="co-subtitle">
+        Review your Liora high jewelry creations before placing your order.
+      </p>
+
+      <div class="co-items">
+        <article class="co-item" *ngFor="let ci of items">
+          <div class="co-thumb">
+            <img [src]="thumb(ci)" [alt]="ci.item.name" />
+          </div>
+
+          <div class="co-item-info">
+            <div class="co-item-name">{{ ci.item.name }}</div>
+            <div class="co-item-meta">
+              <span class="co-item-qty">Qty: {{ ci.quantity }}</span>
+            </div>
+            <div class="co-item-prices">
+              <span>{{ formatPrice(ci.item.price) }}</span>
+              <span class="co-item-subtotal">
+                {{ formatPrice(getItemSubtotal(ci)) }}
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="co-total-row">
+        <span>Order total</span>
+        <span class="co-total-amount">
+          {{ formatPrice(totalAmount) }}
+        </span>
+      </div>
+
+      <p class="co-note">
+        This is a simulated checkout. No real payment is processed. Prices are
+        indicative and for prototype purposes only.
+      </p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="co-form-card">
+      <h2 class="co-form-title">Client details</h2>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="co-field">
+          <label>Full name *</label>
+          <input type="text" formControlName="fullName" />
+          <div
+            class="co-error"
+            *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched"
+          >
+            Please enter your name.
+          </div>
+        </div>
+
+        <div class="co-field">
+          <label>Email *</label>
+          <input type="email" formControlName="email" />
+          <div
+            class="co-error"
+            *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+          >
+            Please enter a valid email.
+          </div>
+        </div>
+
+        <div class="co-field">
+          <label>Country / Region</label>
+          <input type="text" formControlName="country" />
+        </div>
+
+        <div class="co-field">
+          <label>City</label>
+          <input type="text" formControlName="city" />
+        </div>
+
+        <div class="co-field">
+          <label>Notes</label>
+          <textarea rows="3" formControlName="notes"></textarea>
+        </div>
+
+        <button type="submit" class="co-submit-btn">
+          PLACE ORDER
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Pantalla de “gracias” -->
+<ng-template #thanksBlock>
+  <section class="co-thanks">
+    <h1 class="co-thanks-title">THANK YOU FOR YOUR ORDER</h1>
+    <p class="co-thanks-subtitle">
+      Your Liora high jewelry order has been recorded for this prototype.
+      No payment has been processed.
+    </p>
+
+    <div class="co-thanks-actions">
+      <button type="button" (click)="goBackToHighJ()">
+        BACK TO HIGH JEWELRY
+      </button>
+      <button type="button" (click)="goHome()">
+        BACK TO HOME
+      </button>
+    </div>
+  </section>
+</ng-template>
+
+<app-footer></app-footer>

@@ -1,0 +1,147 @@
+/* Palette */
+$ink: #111;
+$muted: #666;
+$gold: #D4AF37; // dorado elegante
+$surface: #fff;
+
+/* Hero */
+.contact-hero {
+  text-align: center;
+  background: $surface;
+  padding: 56px 24px 28px;
+
+  .brand {
+    font-family: "Playfair Display", "Cormorant", Georgia, serif;
+    font-size: 42px;
+    letter-spacing: .02em;
+    color: $ink;
+    margin: 0 0 8px;
+    font-weight: 500;
+  }
+
+  .title {
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    font-size: 14px;
+    color: $ink;
+    margin: 0 0 10px;
+  }
+
+  .subtitle {
+    color: $muted;
+    font-size: 14px;
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+/* Content grid */
+.contact-content {
+  max-width: 1080px;
+  margin: 28px auto 24px;
+  padding: 0 24px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+
+  .card {
+    background: $surface;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 28px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: $ink;
+    margin: 0 0 10px;
+  }
+
+  .line {
+    height: 2px;
+    width: 60px;
+    background: $gold;
+    margin: 4px 0 18px;
+  }
+
+  .info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f2f2f2;
+
+      &:last-child { border-bottom: 0; }
+
+      mat-icon {
+        font-size: 22px;
+        width: 22px;
+        height: 22px;
+        color: $ink;
+        margin-top: 2px;
+      }
+
+      .label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .16em;
+        color: $muted;
+        margin-bottom: 4px;
+    }
+
+      .value {
+        font-size: 15px;
+        color: $ink;
+
+        a {
+          color: $ink;
+          text-decoration: none;
+          border-bottom: 1px solid transparent;
+          transition: border-color .2s ease, color .2s ease;
+
+          &:hover {
+            color: $muted;
+            border-color: $gold;
+          }
+        }
+      }
+
+      .hint {
+        font-size: 12px;
+        color: $muted;
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+/* Note */
+.contact-note {
+  max-width: 960px;
+  margin: 8px auto 64px;
+  padding: 0 24px;
+
+  p {
+    color: $muted;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+}

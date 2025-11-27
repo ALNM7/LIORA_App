@@ -1,0 +1,74 @@
+<div class="cart-backdrop">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h2>My Cart</h2>
+      <button
+        class="icon-btn"
+        type="button"
+        (click)="onCloseClick()"
+        aria-label="Close cart"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <ng-container *ngIf="(items$ | async) as items">
+      <p class="empty" *ngIf="items.length === 0">
+        Your cart is empty.
+      </p>
+
+      <div class="cart-items" *ngIf="items.length > 0">
+        <div class="cart-item" *ngFor="let ci of items; trackBy: trackById">
+          <div class="thumb">
+            <img
+              *ngIf="ci.item.images?.length; else noImg"
+              [src]="jewelryService.fullImageUrl(ci.item.images[0].image)"
+              [alt]="ci.item.name"
+            />
+            <ng-template #noImg>
+              <img
+                src="assets/placeholder.png"
+                alt="No image"
+              />
+            </ng-template>
+          </div>
+
+          <div class="info">
+            <div class="name">{{ ci.item.name }}</div>
+            <div class="materials">{{ ci.item.materials }}</div>
+            <div class="price">
+              {{ ci.item.price | currency:'USD':'symbol':'1.0-0' }}
+            </div>
+          </div>
+
+          <div class="qty">
+            <button type="button" (click)="decrease(ci)">−</button>
+            <span>{{ ci.quantity }}</span>
+            <button type="button" (click)="increase(ci)">+</button>
+          </div>
+
+          <div class="remove">
+            <button type="button" (click)="remove(ci)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="cart-footer" *ngIf="(items$ | async)?.length">
+            <div class="cart-total">
+                Total:
+                {{ cart.getTotalPrice() | currency:'USD':'symbol':'1.0-0' }}
+            </div>
+
+          <button
+            type="button"
+            class="cart-checkout-btn"
+            (click)="goToCheckout()"
+          >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

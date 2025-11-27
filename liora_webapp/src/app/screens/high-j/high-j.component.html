@@ -1,0 +1,242 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="hj-hero">
+  <div class="hj-hero-inner">
+    <h1 class="hj-hero-title">LIORA HIGH JEWELRY</h1>
+    <p class="hj-hero-subtitle">
+      Singular creations in precious metals and stones, crafted to outlive time itself.
+    </p>
+  </div>
+</section>
+
+<section class="hj-layout">
+  <!-- Filtros izquierda -->
+  <aside class="hj-filters">
+    <div class="hj-filter-block">
+      <h3 class="hj-filter-title">SORT BY</h3>
+      <div class="hj-filter-options">
+        <label class="hj-radio">
+          <input
+            type="radio"
+            name="sort"
+            [value]="'price-asc'"
+            (change)="onSortChange('price-asc')"
+            [checked]="sort === 'price-asc'"
+          />
+          <span>PRICE LOW TO HIGH</span>
+        </label>
+
+        <label class="hj-radio">
+          <input
+            type="radio"
+            name="sort"
+            [value]="'price-desc'"
+            (change)="onSortChange('price-desc')"
+            [checked]="sort === 'price-desc'"
+          />
+          <span>PRICE HIGH TO LOW</span>
+        </label>
+
+        <label class="hj-radio">
+          <input
+            type="radio"
+            name="sort"
+            [value]="'recommended'"
+            (change)="onSortChange('recommended')"
+            [checked]="sort === 'recommended'"
+          />
+          <span>RECOMMENDED</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="hj-filter-block">
+      <h3 class="hj-filter-title">CATEGORY</h3>
+      <ul class="hj-check-list">
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === null"
+            (click)="onCategoryChange(null)"
+          >
+            ALL
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'bracelet'"
+            (click)="onCategoryChange('bracelet')"
+          >
+            BRACELETS
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'ring'"
+            (click)="onCategoryChange('ring')"
+          >
+            RINGS
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'necklace'"
+            (click)="onCategoryChange('necklace')"
+          >
+            NECKLACES
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'earrings'"
+            (click)="onCategoryChange('earrings')"
+          >
+            EARRINGS
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'watches'"
+            (click)="onCategoryChange('watches')"
+          >
+            WATCHES
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'accessories'"
+            (click)="onCategoryChange('accessories')"
+          >
+            ACCESSORIES
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="hj-check-btn"
+            [class.active]="selectedCategory === 'fragrances'"
+            (click)="onCategoryChange('fragrances')"
+          >
+            FRAGRANCES
+          </button>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Grid de productos -->
+  <section class="hj-grid">
+    <div class="hj-loading" *ngIf="loading">
+      Loading pieces…
+    </div>
+
+    <div
+      class="hj-loading"
+      *ngIf="!loading && paginatedItems.length === 0"
+    >
+      No pieces found for this selection.
+    </div>
+
+    <!-- Cards paginadas (máx 9 por página) -->
+    <article
+      class="hj-card"
+      *ngFor="let item of paginatedItems"
+      (click)="openDetail(item)"
+    >
+      <div class="hj-card-media">
+        <!-- Carril de imágenes que se desplaza -->
+        <div
+          class="hj-card-slider"
+          [style.transform]="getSliderTransform(item)"
+        >
+          <img
+            *ngFor="let img of item.images; let i = index"
+            [src]="jewelryService.fullImageUrl(img.image)"
+            [alt]="item.name + ' view ' + i"
+            class="hj-card-img"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Flechas del mini carrusel -->
+        <button
+          class="hj-arrow hj-arrow-left"
+          *ngIf="hasPrev(item)"
+          (click)="prevImage(item, $event)"
+        >
+          ‹
+        </button>
+
+        <button
+          class="hj-arrow hj-arrow-right"
+          *ngIf="hasNext(item)"
+          (click)="nextImage(item, $event)"
+        >
+          ›
+        </button>
+      </div>
+
+      <div class="hj-card-body">
+        <h3 class="hj-card-name">
+          {{ item.name }}
+        </h3>
+        <p class="hj-card-materials">
+          {{ item.materials }}
+        </p>
+        <p class="hj-card-price">
+          {{ formatPrice(item.price) }}
+        </p>
+      </div>
+
+      <button class="hj-card-cta">
+        VIEW PIECE
+      </button>
+    </article>
+
+    <!-- Paginador -->
+    <div class="hj-pagination" *ngIf="!loading && totalPages > 1">
+      <button
+        type="button"
+        class="hj-page-btn prev"
+        (click)="prevPage()"
+        [disabled]="currentPage === 1"
+      >
+        ‹
+      </button>
+
+      <button
+        type="button"
+        class="hj-page-btn"
+        *ngFor="let page of pages"
+        (click)="goToPage(page)"
+        [class.active]="page === currentPage"
+      >
+        {{ page }}
+      </button>
+
+      <button
+        type="button"
+        class="hj-page-btn next"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+      >
+        ›
+      </button>
+    </div>
+  </section>
+</section>
+
+<app-footer></app-footer>

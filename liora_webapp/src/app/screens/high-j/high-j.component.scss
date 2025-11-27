@@ -1,0 +1,360 @@
+
+$ink: #111;
+$muted: #666;
+$border: #e5e5e5;
+$background: #ffffff;
+
+.hj-hero {
+  padding: 40px 16px 30px;
+  text-align: center;
+  background: #faf7f4;
+}
+
+.hj-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.hj-hero-title {
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  color: $ink;
+}
+
+.hj-hero-subtitle {
+  margin: 0;
+  color: $muted;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* layout principal */
+
+.hj-layout {
+  max-width: 1360px;
+  margin: 30px auto 70px;
+  padding: 0 16px;
+
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 32px;
+}
+
+/* filtros */
+
+.hj-filters {
+  border-right: 1px solid #f1f1f1;
+  padding-right: 18px;
+}
+
+.hj-filter-block {
+  margin-bottom: 26px;
+}
+
+.hj-filter-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $ink;
+  margin: 0 0 10px;
+}
+
+.hj-filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hj-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: $muted;
+  cursor: pointer;
+
+  input {
+    accent-color: $ink;
+    cursor: pointer;
+  }
+
+  span {
+    letter-spacing: 0.06em;
+  }
+}
+
+.hj-check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hj-check-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 0;
+  font-size: 13px;
+  text-align: left;
+  width: 100%;
+  color: $muted;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &.active,
+  &:hover {
+    color: $ink;
+  }
+}
+
+/* grid productos */
+
+.hj-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.hj-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px 0;
+  color: $muted;
+  font-size: 14px;
+}
+
+/* tarjeta */
+
+.hj-card {
+  border: 1px solid $border;
+  background: $background;
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: $ink;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+
+    .hj-card-cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.hj-card-media {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.hj-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+/* flechas */
+
+.hj-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: rgba(255, 255, 255, 0.94);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: #fff;
+    border-color: $ink;
+  }
+}
+
+.hj-arrow-left {
+  left: 10px;
+}
+
+.hj-arrow-right {
+  right: 10px;
+}
+
+/* texto tarjeta */
+
+.hj-card-body {
+  text-align: center;
+  padding: 8px 6px 4px;
+  flex: 1 1 auto;
+}
+
+.hj-card-name {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink;
+  margin: 6px 0 6px;
+}
+
+.hj-card-materials {
+  font-size: 13px;
+  color: $muted;
+  margin: 0 0 8px;
+}
+
+.hj-card-price {
+  font-size: 14px;
+  color: $ink;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+/* botón que aparece en hover */
+
+.hj-card-cta {
+  margin-top: 10px;
+  border: none;
+  background: $ink;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  padding: 11px 0;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  opacity: 0;
+  transform: translateY(6px);
+
+  &:hover {
+    background: #000;
+  }
+}
+
+/* responsive */
+
+@media (max-width: 1024px) {
+  .hj-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .hj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hj-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hj-filters {
+    border-right: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding-right: 0;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+  }
+
+  .hj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .hj-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+.hj-card-media {
+  position: relative;
+  margin-bottom: 12px;
+  overflow: hidden; /* importante para recortar el deslizamiento */
+}
+
+/* Nuevo carril deslizante */
+.hj-card-slider {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* Cada imagen ocupa todo el ancho del card */
+.hj-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  flex: 0 0 100%;  /* clave: 1 imagen = 100% del carril */
+}
+
+/* PAGINADOR */
+
+.hj-pagination {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+}
+
+.hj-page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.12s ease;
+
+  &.active {
+    background: $ink;
+    color: #fff;
+    border-color: $ink;
+  }
+
+  &:hover:not(:disabled):not(.active) {
+    background: #f4f4f4;
+    border-color: #ccc;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.45;
+  }
+}
+
+.hj-page-btn.prev,
+.hj-page-btn.next {
+  font-size: 14px;
+  letter-spacing: 0;
+  padding: 0 12px;
+}
+

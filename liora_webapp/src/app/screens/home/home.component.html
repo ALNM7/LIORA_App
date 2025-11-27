@@ -1,0 +1,80 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="hero">
+  <img
+    src="assets/home_img_1.png"
+    alt="Liora and Love"
+    class="hero-img"
+    loading="eager"
+  />
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content bottom">
+    <h1 class="hero-title">LIORA ETERNAL: LOVE WITHOUT LIMITS</h1>
+    <p class="hero-subtitle">
+      Because love deserves to shine forever, jewelry that speaks the language of the heart.
+    </p>
+    <!-- SHOP -> high-j sin categoría (ALL) -->
+    <button class="hero-btn" (click)="goToHighJ()">SHOP</button>
+  </div>
+</section>
+
+<section class="feature" appRevealOnScroll>
+  <img
+    src="assets/home_img_2.png"
+    alt="Liora feature"
+    class="feature-img"
+  />
+</section>
+
+<section class="feature-copy" appRevealOnScroll>
+  <h2 class="feature-title">LIORA ELEMENTS</h2>
+  <p class="feature-text">
+    Where nature meets design. Each piece a reflection of timeless beauty.
+  </p>
+  <!-- LIORA ELEMENTS -> WATCHES -->
+  <button class="feature-btn" (click)="goToHighJ('watches')">
+    SHOP THE COLLECTION
+  </button>
+
+  <section class="duo" appRevealOnScroll>
+    <article class="duo-card">
+      <img
+        src="assets/home_img_3.png"
+        alt="Liora sunglasses editorial"
+        class="duo-img"
+      />
+      <div class="duo-copy">
+        <h3 class="duo-title">LIORA SUN</h3>
+        <p class="duo-text">
+          Statement shades with sculptural lines and luminous metal accents.
+        </p>
+        
+        <button class="duo-btn" (click)="goToHighJ('accessories')">
+          SHOP
+        </button>
+      </div>
+    </article>
+
+    <article class="duo-card">
+      <img
+        src="assets/home_img_4.png"
+        alt="Liora perfume bottle held in hand"
+        class="duo-img"
+      />
+      <div class="duo-copy">
+        <h3 class="duo-title">A PERFUME, A LIORA</h3>
+        <p class="duo-text">
+          A modern chypre with a floral-mineral trail designed to linger.
+        </p>
+       
+        <button class="duo-btn" (click)="goToHighJ('fragrances')">
+          SHOP
+        </button>
+      </div>
+    </article>
+  </section>
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,96 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="jd-wrapper" *ngIf="item as jewel">
+  <div class="jd-images">
+    <div class="jd-main">
+      <img
+        [src]="currentImage"
+        [alt]="jewel.name"
+        class="jd-main-img"
+      />
+    </div>
+
+    <div class="jd-thumbs" *ngIf="(jewel.images?.length || 0) > 1">
+      <button
+        class="jd-thumb"
+        *ngFor="let img of (jewel.images || []); let i = index"
+        (click)="selectThumb(i)"
+        [class.active]="i === currentIndex"
+      >
+        <img
+          [src]="jewelryService.fullImageUrl(img.image)"
+          [alt]="jewel.name + ' thumbnail ' + i"
+        />
+      </button>
+    </div>
+
+    <p class="jd-media-note" *ngIf="(jewel.images?.length || 0) > 1">
+      Select a view to explore each angle of this Liora creation.
+    </p>
+  </div>
+
+  <div class="jd-info">
+    <h1 class="jd-name">{{ jewel.name }}</h1>
+    <p class="jd-category">{{ jewel.category | uppercase }}</p>
+
+    <!-- Descripción corta genérica basada en el producto -->
+    <p class="jd-tagline">
+      A Liora creation designed to accompany your most luminous moments.
+    </p>
+
+    <p class="jd-materials">
+      {{ jewel.materials }}
+    </p>
+
+    <p class="jd-price">
+      {{ formatPrice(jewel.price) }}
+    </p>
+
+    <!-- Grid de metadatos que sirve para cualquier producto -->
+    <div class="jd-meta-grid">
+      <div class="jd-meta-item">
+        <span class="jd-meta-label">Status</span>
+        <span class="jd-meta-value">
+          {{ jewel.is_active ? 'Available' : 'Not available' }}
+        </span>
+      </div>
+      <div class="jd-meta-item">
+        <span class="jd-meta-label">Shipping</span>
+        <span class="jd-meta-value">Complimentary, insured</span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="jd-add-cart"
+      (click)="addToCart()"
+    >
+      ADD TO CART
+    </button>
+
+    <p class="jd-cart-message" *ngIf="cartMessage">
+      {{ cartMessage }}
+    </p>
+
+    <div class="jd-divider"></div>
+
+    <div class="jd-detail-columns">
+      
+
+      <div class="jd-detail-block">
+        <h3 class="jd-block-title">Care & services</h3>
+        <ul class="jd-list">
+          <li>Dedicated Liora client care team.</li>
+          <li>Complimentary cleaning and inspection in-store.</li>
+          <li>Secure and insured delivery for all orders.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="jd-note">
+      For additional information about this Liora creation, please contact our client services team.
+    </p>
+  </div>
+</section>
+
+<app-footer></app-footer>

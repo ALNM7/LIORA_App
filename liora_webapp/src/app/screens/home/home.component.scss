@@ -1,0 +1,225 @@
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 45px;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 75%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 24px;
+  color: #fff;
+
+  &.bottom {        /* texto alineado abajo tipo Cartier */
+    align-self: flex-end;
+    padding-bottom: 36px;
+  }
+}
+
+.hero-title {
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: clamp(14px, 1.4vw, 18px);
+  line-height: 1.5;
+  opacity: .95;
+  margin-bottom: 24px;
+}
+
+.hero-btn {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 12px 30px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .2s ease;
+  &:hover { background:#fff; color:#000; transform: translateY(-2px); }
+}
+
+
+.feature {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;       /* mismo alto que el hero */
+  overflow: hidden;
+  background: #000;
+}
+
+.feature-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(.92);
+}
+
+/* Texto debajo del hero 2 */
+.feature-copy {
+  padding: 28px 16px 42px;
+  text-align: center;
+
+  .feature-title {
+    font-size: clamp(18px, 2.2vw, 22px);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #111;
+    margin: 0 0 10px;
+  }
+
+  .feature-text {
+    color: #333;
+    font-size: clamp(13px, 1.2vw, 15px);
+    margin: 0 0 14px;
+  }
+
+  .feature-btn {
+  background: #111;
+  color: #fff;
+  border: 2px solid transparent; /* para evitar que el botón "salte" cuando aparezca el borde */
+  padding: 10px 18px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, color 0.2s ease, border 0.2s ease;
+
+  &:hover {
+    background: #fff;           /* fondo blanco */
+    color: #000;                /* texto negro */
+    border: 2px solid #000;     /* borde negro */
+    transform: translateY(-1px);
+  }
+}
+
+}
+
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+}
+
+.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsivo suave */
+@media (min-width: 1280px) {
+  .hero { min-height: 72vh; }
+  .feature { min-height: 72vh; }
+}
+
+/* ——————— Duo (two editorial blocks) ——————— */
+.duo {
+  max-width: 1400px;
+  margin: 50px auto 72px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+
+  /* smooth reveal like the rest */
+  &.reveal-up { opacity: 0; transform: translateY(34px); }
+  &.in-view { opacity: 1; transform: translateY(0); }
+}
+
+.duo-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.duo-img {
+  width: 100%;
+  
+  aspect-ratio: 16 / 9;   
+  object-fit: cover;
+  display: cover;
+  object-position: 0% 20%;
+}
+
+
+.duo-copy {
+  text-align: center;
+  padding: 22px 12px 30px;
+}
+
+.duo-title {
+  font-size: clamp(18px, 2.2vw, 22px);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #111;
+  margin: 0 0 10px;
+}
+
+.duo-text {
+  color: #333;
+  font-size: clamp(13px, 1.2vw, 15px);
+  margin: 0 0 14px;
+}
+
+/* botón consistente con .feature-btn */
+.duo-btn {
+  background: #111;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 10px 18px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease, color .2s ease, border .2s ease;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    transform: translateY(-1px);
+  }
+}
+
+/* Responsive: two columns on desktop */
+@media (min-width: 960px) {
+  .duo { grid-template-columns: 1fr 1fr; }
+}
+
+/* Ajuste global opcional para mantener alturas similares a tus secciones previas */
+@media (min-width: 1280px) {
+  .duo-img { aspect-ratio: 3 / 2; } /* un poco más alto en pantallas grandes */
+}
+

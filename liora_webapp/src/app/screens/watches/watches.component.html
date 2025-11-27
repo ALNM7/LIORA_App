@@ -1,0 +1,83 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="w-hero">
+  <div class="w-hero-inner">
+    <h1 class="w-hero-title">LIORA WATCHES</h1>
+    <p class="w-hero-subtitle">
+      Timepieces that frame each second in luminous precision and quiet luxury.
+    </p>
+  </div>
+</section>
+
+
+  <!-- Grid de productos -->
+  <section class="w-grid">
+    <div class="w-loading" *ngIf="loading">
+      Loading watches…
+    </div>
+
+    <div class="w-status error" *ngIf="!loading && error">
+      {{ error }}
+    </div>
+
+    <div class="w-status" *ngIf="!loading && !error && items.length === 0">
+      No watches available at the moment.
+    </div>
+
+   
+    <ng-container *ngIf="!loading && !error && items.length > 0">
+      <article
+        class="w-card"
+        *ngFor="let item of items"
+        (click)="openDetail(item)"
+      >
+        <div class="w-card-media">
+          <img
+            [src]="getCurrentImage(item)"
+            [alt]="item.name"
+            class="w-card-img"
+            loading="eager"
+          />
+
+          <button
+            class="w-arrow w-arrow-left"
+            *ngIf="hasPrev(item)"
+            (click)="prevImage(item, $event)"
+          >
+            ‹
+          </button>
+
+          <button
+            class="w-arrow w-arrow-right"
+            *ngIf="hasNext(item)"
+            (click)="nextImage(item, $event)"
+          >
+            ›
+          </button>
+        </div>
+
+        <div class="w-card-body">
+          <h3 class="w-card-name">
+            {{ item.name }}
+          </h3>
+          <p class="w-card-materials">
+            {{ item.materials }}
+          </p>
+          <p class="w-card-price">
+            {{ formatPrice(item.price) }}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="w-card-cta"
+          (click)="onViewPiece(item, $event)"
+        >
+          VIEW PIECE
+        </button>
+      </article>
+    </ng-container>
+  </section>
+
+
+<app-footer></app-footer>

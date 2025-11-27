@@ -1,0 +1,250 @@
+$ink: #111;
+$muted: #666;
+
+/* CONTENEDOR PRINCIPAL */
+.jd-wrapper {
+  max-width: 1200px;
+  margin: 40px auto 70px;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* COLUMNA DE IMÁGENES */
+.jd-images {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 460px;
+  width: 100%;
+}
+
+/* CONTENEDOR DE LA IMAGEN PRINCIPAL */
+.jd-main {
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+  background: #fff;
+  overflow: hidden;          /* para recortar el zoom */
+  position: relative;
+  
+}
+
+/* IMAGEN PRINCIPAL — MÁS PEQUEÑA Y CON ZOOM AL HOVER */
+.jd-main-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+
+  transition: transform 0.4s ease;
+  transform-origin: center center;
+}
+
+.jd-main:hover .jd-main-img {
+  transform: scale(1.14);
+}
+
+/* MINIATURAS */
+.jd-thumbs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.jd-thumb {
+  border: 1px solid #e5e5e5;
+  padding: 4px;
+  background: #fff;
+  cursor: pointer;
+  min-width: 72px;
+  max-width: 90px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    border-color: $ink;
+  }
+}
+
+/* NOTA BAJO MINIATURAS */
+.jd-media-note {
+  font-size: 11px;
+  color: $muted;
+  margin: 0;
+}
+
+/* COLUMNA DE INFO */
+.jd-info {
+  padding-top: 6px;
+  max-width: 520px;
+}
+
+/* TÍTULO Y CATEGORÍA */
+.jd-name {
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  color: $ink;
+}
+
+.jd-category {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+/* TAGLINE GENÉRICO DE PRODUCTO */
+.jd-tagline {
+  font-size: 13px;
+  color: #444;
+  margin: 0 0 10px;
+}
+
+/* MATERIALES Y PRECIO */
+.jd-materials {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: $muted;
+}
+
+.jd-price {
+  font-size: 18px;
+  color: $ink;
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+
+/* META GRID (STATUS, SHIPPING) */
+.jd-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  margin-bottom: 18px;
+}
+
+.jd-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.jd-meta-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #999;
+}
+
+.jd-meta-value {
+  font-size: 13px;
+  color: #222;
+}
+
+/* BOTÓN ADD TO CART */
+.jd-add-cart {
+  margin-top: 4px;
+  padding: 10px 24px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* MENSAJE DE CARRITO */
+.jd-cart-message {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #333;
+}
+
+/* DIVISOR DISCRETO */
+.jd-divider {
+  margin: 18px 0 14px;
+  height: 1px;
+  background: #eee;
+}
+
+/* BLOQUES DE DETALLE Y SERVICIOS */
+.jd-detail-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.jd-detail-block {}
+
+.jd-block-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: $ink;
+  margin: 0 0 8px;
+}
+
+.jd-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 12px;
+    color: $muted;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+}
+
+/* NOTA FINAL */
+.jd-note {
+  font-size: 13px;
+  color: $muted;
+  line-height: 1.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .jd-wrapper {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .jd-images {
+    max-width: 100%;
+  }
+
+  .jd-info {
+    max-width: 100%;
+  }
+
+  .jd-meta-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
