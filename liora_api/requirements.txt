@@ -9,3 +9,7 @@ django-rest-auth
 cryptography
 python-dateutil
 google-cloud-storage
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
