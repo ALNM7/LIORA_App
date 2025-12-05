@@ -19,28 +19,34 @@ export class AdminHighJManageComponent implements OnInit {
   loading = false;
   error = '';
   deletingId: number | null = null;
+  isAdmin = false;
+
 
   constructor(
     private jewelryService: JewelryService,
     private authUser: AuthUserService,
     private router: Router
+    
   ) {}
 
   ngOnInit(): void {
-    // opcional: verificar que el usuario es admin
-    this.authUser.getCurrentUser().subscribe({
-      next: (u) => {
-        if (!u.is_admin) {
-          this.error = 'You are not authorized to manage high jewelry.';
-          return;
-        }
-        this.loadItems();
-      },
-      error: () => {
-        this.error = 'Please sign in to access this page.';
+  this.authUser.getCurrentUser().subscribe({
+    next: (u) => {
+      if (!u.is_admin) {
+        this.error = 'You are not authorized to manage high jewelry.';
+        this.isAdmin = false;
+        return;
       }
-    });
-  }
+      this.isAdmin = true;
+      this.loadItems();
+    },
+    error: () => {
+      this.error = 'Please sign in to access this page.';
+      this.isAdmin = false;
+    }
+  });
+}
+
 
   loadItems(): void {
     this.loading = true;

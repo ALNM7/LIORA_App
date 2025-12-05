@@ -3,7 +3,7 @@
 <section class="manage-wrapper">
   <div class="manage-header">
     <h1>High Jewelry Admin</h1>
-    <button (click)="goToCreate()">New piece</button>
+    <button *ngIf="isAdmin" (click)="goToCreate()">New piece</button>
   </div>
 
   <p class="error" *ngIf="error">{{ error }}</p>
